@@ -1,0 +1,67 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Find a Movie</h1>
+        <p class="lead">Search a movie using the form below:</p>
+        <form (submit)="searchMovies()" >
+          <input type="text" class="form-control" [(ngModel)]="searchStr" name="searchStr" >
+          <br>
+          <button class="btn btn-primary btn-lg" >Find</button>
+        </form>
+    </div>
+  </div>
+
+  <div *ngIf="searchRes" class="card">
+      <div class="card-header">
+        Search Results
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div *ngFor="let movie of searchRes; let i=index" class="col-md-2" >
+              <div *ngIf="i < 18" >
+                  <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" class="thumbnail">
+                  <h4 class="card-title">{{movie.title}}</h4>
+                  <p class="card-text">{{movie.release_date}}</p>
+                  <p><a class="btn btn-default" routerLink="/movie/{{movie.id}}" >View Details &raquo; </a></p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+<div class="card">
+    <div class="card-header">
+      Popular Movies
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div *ngFor="let movie of popularList; let i=index" class="col-md-2" >
+            <div *ngIf="i < 6" >
+                <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" class="thumbnail">
+                <h4 class="card-title">{{movie.title}}</h4>
+                <p class="card-text">{{movie.release_date}}</p>
+                <p><a  class="btn btn-default" routerLink="/movie/{{movie.id}}" >View Details &raquo;</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="card">
+      <div class="card-header">
+        In Theaters
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div *ngFor="let movie of theatersList; let i=index" class="col-md-2" >
+              <div *ngIf="i < 6" >
+                  <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" class="thumbnail">
+                  <h4 class="card-title">{{movie.title}}</h4>
+                  <p class="card-text">{{movie.release_date}}</p>
+                  <p><a class="btn btn-default" routerLink="/movie/{{movie.id}}">View Details &raquo;</a></p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
